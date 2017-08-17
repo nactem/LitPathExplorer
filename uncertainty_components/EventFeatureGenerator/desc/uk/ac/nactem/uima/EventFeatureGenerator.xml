@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+	<frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+	<primitive>true</primitive>
+	<annotatorImplementationName>uk.ac.nactem.uima.EventFeatureGenerator
+	</annotatorImplementationName>
+	<analysisEngineMetaData>
+		<name>Event Feature Generator</name>
+		<description>Extracts Event-related features for training/applying a
+			classifier.
+		</description>
+		<version>1.0</version>
+		<vendor>National Centre for Text Mining (NaCTeM)</vendor>
+		<configurationParameters />
+		<configurationParameterSettings />
+		<typeSystemDescription>
+			<imports>
+				<import name="org.u_compare.U_compareTypeSystem" />
+				<import name="jp.ac.u_tokyo.s.is.www_tsujii.TsujiiLabTypesV2TypeSystem" />
+				<import name="uk.ac.nactem.uima.BioNLPSTTypeSystem" />
+				<import name="uk.ac.nactem.uima.MachineLearningTypeSystem" />
+			</imports>
+		</typeSystemDescription>
+		<typePriorities>
+			<priorityList>
+				<type>jp.ac.u_tokyo.s.is.www_tsujii.tools.enju.EnjuSentence</type>
+				<type>jp.ac.u_tokyo.s.is.www_tsujii.tools.enju.EnjuConstituent
+				</type>
+				<type>uk.ac.nactem.uima.cas.semantic.Event</type>
+				<type>uk.ac.nactem.uima.cas.bionlpst.Entity</type>
+				<type>jp.ac.u_tokyo.s.is.www_tsujii.tools.enju.EnjuToken</type>
+			</priorityList>
+		</typePriorities>
+		<fsIndexCollection />
+		<capabilities>
+			<capability>
+				<inputs>
+					<type allAnnotatorFeatures="true">uk.ac.nactem.uima.cas.bionlpst.Event
+					</type>
+				</inputs>
+				<outputs>
+					<type allAnnotatorFeatures="true">uk.ac.nactem.uima.cas.bionlpst.Event
+					</type>
+				</outputs>
+				<languagesSupported />
+			</capability>
+		</capabilities>
+		<operationalProperties>
+			<modifiesCas>true</modifiesCas>
+			<multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+			<outputsNewCASes>false</outputsNewCASes>
+		</operationalProperties>
+	</analysisEngineMetaData>
+	<externalResourceDependencies>
+		<externalResourceDependency>
+			<key>SeventType</key>
+			<description />
+			<optional>false</optional>
+		</externalResourceDependency>
+	</externalResourceDependencies>
+	<resourceManagerConfiguration>
+		<externalResources>
+			<externalResource>
+				<name>SeventType</name>
+				<description />
+				<fileResourceSpecifier>
+					<fileUrl>file:EventType.txt</fileUrl>
+				</fileResourceSpecifier>
+			</externalResource>
+		</externalResources>
+		<externalResourceBindings>
+			<externalResourceBinding>
+				<key>SeventType</key>
+				<resourceName>SeventType</resourceName>
+			</externalResourceBinding>
+		</externalResourceBindings>
+	</resourceManagerConfiguration>
+</analysisEngineDescription>

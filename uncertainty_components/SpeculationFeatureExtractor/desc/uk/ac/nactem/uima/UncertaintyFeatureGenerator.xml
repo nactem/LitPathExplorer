@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+	<frameworkImplementation>org.apache.uima.java</frameworkImplementation>
+	<primitive>true</primitive>
+	<annotatorImplementationName>uk.ac.nactem.uima.UncertaintyFeatureGenerator
+	</annotatorImplementationName>
+	<analysisEngineMetaData>
+		<name>Uncertainty Feature Generator</name>
+		<description>Extracts features to use in order to classify the 
+			uncertainty of each event as positive or
+			negative.
+		</description>
+		<version>1.0</version>
+		<vendor>National Centre for Text Mining (NaCTeM)</vendor>
+		<configurationParameters />
+		<configurationParameterSettings />
+		<typeSystemDescription>
+			<imports>
+				<import name="org.u_compare.U_compareTypeSystem" />
+				<import name="jp.ac.u_tokyo.s.is.www_tsujii.TsujiiLabTypesV2TypeSystem" />
+				<import name="uk.ac.nactem.uima.BioNLPSTTypeSystem" />
+				<import name="uk.ac.nactem.uima.MachineLearningTypeSystem" />
+			</imports>
+		</typeSystemDescription>
+		<typePriorities>
+			<priorityList>
+				<type>jp.ac.u_tokyo.s.is.www_tsujii.tools.enju.EnjuSentence</type>
+				<type>jp.ac.u_tokyo.s.is.www_tsujii.tools.enju.EnjuConstituent</type>
+				<type>uk.ac.nactem.uima.cas.semantic.Event</type>
+				<type>uk.ac.nactem.uima.cas.bionlpst.Entity</type>
+				<type>jp.ac.u_tokyo.s.is.www_tsujii.tools.enju.EnjuToken</type>
+			</priorityList>
+		</typePriorities>
+		<fsIndexCollection />
+		<capabilities>
+			<capability>
+				<inputs>
+					<type allAnnotatorFeatures="true">uk.ac.nactem.uima.cas.bionlpst.Event
+					</type>
+				</inputs>
+				<outputs>
+					<type allAnnotatorFeatures="true">uk.ac.nactem.uima.cas.bionlpst.Event
+					</type>
+				</outputs>
+				<languagesSupported />
+			</capability>
+		</capabilities>
+		<operationalProperties>
+			<modifiesCas>true</modifiesCas>
+			<multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+			<outputsNewCASes>false</outputsNewCASes>
+		</operationalProperties>
+	</analysisEngineMetaData>
+	<externalResourceDependencies>
+		<externalResourceDependency>
+			<key>SallClues</key>
+			<description />
+			<optional>false</optional>
+		</externalResourceDependency>
+		<externalResourceDependency>
+			<key>Sd0Arg1Clues</key>
+			<description />
+			<optional>false</optional>
+		</externalResourceDependency>
+		<externalResourceDependency>
+			<key>Sd0Arg2Clues</key>
+			<description />
+			<optional>false</optional>
+		</externalResourceDependency>
+		<externalResourceDependency>
+			<key>Sd1Arg2ntClues</key>
+			<description />
+			<optional>false</optional>
+		</externalResourceDependency>
+	</externalResourceDependencies>
+	<resourceManagerConfiguration>
+		<externalResources>
+			<externalResource>
+				<name>SallClues</name>
+				<description />
+				<fileResourceSpecifier>
+					<fileUrl>file:SallClues.txt</fileUrl>
+				</fileResourceSpecifier>
+			</externalResource>
+			<externalResource>
+				<name>Sd0Arg1Clues</name>
+				<description />
+				<fileResourceSpecifier>
+					<fileUrl>file:Sd0Arg1Clues.txt</fileUrl>
+				</fileResourceSpecifier>
+			</externalResource>
+			<externalResource>
+				<name>Sd0Arg2Clues</name>
+				<description />
+				<fileResourceSpecifier>
+					<fileUrl>file:Sd0Arg2Clues.txt</fileUrl>
+				</fileResourceSpecifier>
+			</externalResource>
+			<externalResource>
+				<name>Sd1Arg2ntClues</name>
+				<description />
+				<fileResourceSpecifier>
+					<fileUrl>file:Sd1Arg2ntClues.txt</fileUrl>
+				</fileResourceSpecifier>
+			</externalResource>
+		</externalResources>
+		<externalResourceBindings>
+			<externalResourceBinding>
+				<key>SallClues</key>
+				<resourceName>SallClues</resourceName>
+			</externalResourceBinding>
+			<externalResourceBinding>
+				<key>Sd0Arg1Clues</key>
+				<resourceName>Sd0Arg1Clues</resourceName>
+			</externalResourceBinding>
+			<externalResourceBinding>
+				<key>Sd0Arg2Clues</key>
+				<resourceName>Sd0Arg2Clues</resourceName>
+			</externalResourceBinding>
+			<externalResourceBinding>
+				<key>Sd1Arg2ntClues</key>
+				<resourceName>Sd1Arg2ntClues</resourceName>
+			</externalResourceBinding>
+		</externalResourceBindings>
+	</resourceManagerConfiguration>
+
+</analysisEngineDescription>

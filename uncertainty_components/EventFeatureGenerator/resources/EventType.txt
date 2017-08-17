@@ -1,0 +1,10 @@
+reg
+pos_reg
+neg_reg
+bin
+loc
+exp
+cor
+tra
+cel
+other
