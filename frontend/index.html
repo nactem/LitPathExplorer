@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<title>LitPathExplorer</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://takafumir.github.io/javascript-lemmatizer/bower_components/underscore/underscore.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+		<script type="text/javascript" src="./config/linuxWinConfig.js"></script>
+		<script type="text/javascript" src="./paths.js"></script>
+		<script type="text/javascript" src="./d3.v3.min.js"></script>
+		<script type="text/javascript" src="./clone.js"></script>
+		<!--script type="text/javascript" src="./jquery-1.8.2.min.js"></script-->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+		<link href="./wordTree.css" rel="stylesheet">
+		<link href="./network.css" rel="stylesheet">
+		<link href="./modelVisualizer.css" rel="stylesheet">
+		<link href="./nodeInfo.css" rel="stylesheet">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	</head>
+	<body>
+    
+	<div>
+    <div id="toolHeading" style="position: absolute; top:8px; left:23px; font-size:large;">LitPathExplorer <img src="./icons/molecule (1).svg" width="35px"><img id ="indicatorGIF" src="./icons/indicator.gif" width="35px"></div>
+        <span id="allQueries">
+          <span id="search0" class="expandableSearch" style="display:inline-block;margin-right:10px">
+            
+                <select name="booleans0" id="searchBoolean0" class="form-control input-sm" style="visibility:hidden; width:35%;">
+                    <option value="AND" selected="">AND</option>
+                    <option value="OR">OR</option>                
+                </select>
+                <input style="font-size:11pt;width:254px;display:block" type="search" id="searchEvent0" cols="100px" class="form-control" placeholder = "Event" disabled>
+            
+            <form class="form-inline">
+                <input style="font-size:11pt;width:125px" type="search" id="searchEntity0" cols="40px" class="form-control" placeholder = "Entity" disabled>
+                <input style="font-size:11pt;width:125px" type="search" id="searchRole0" cols="40px" class="form-control" placeholder = "Role" disabled>
+            </form>
+          </span>
+        </span>
+        <p id="connector0" style="display:inline;">
+            <!--img id="conn0" src="./icons/2000px-Ambox_plus.png" style="height:20px" onclick="plusSignPressed()"-->
+            <span class="glyphicon glyphicon-plus"></span>
+            <!--img id="conn0" src="./icons/2000px-Minus_sign_font_awesome.png" style="height:20px" onclick="minusSignPressed()"-->
+            <span class="glyphicon glyphicon-minus"></span>
+        </p>
+    </div>
+    <div style="display:block">
+        <span id="nodeCounterLabel" style="color:blue;"> </span>
+        <button id="showButton" type="button" onclick="showGraph()" style="visibility:hidden;">Show anyway!</button>
+        <span id="networkRegenerated" style="visibility:hidden;color: purple;"> Confidences are being recomputed<img id ="indicatorRetrainingGIF" src="./icons/indicator.gif" style="margin-bottom:3px;" width="15px"></span>
+    </div>
+    <!--table>
+    <tr-->
+        <!--div class="container pull-left"-->
+        <table>
+            <!--div class="row"-->
+            <tr class="row">
+                
+                <!--div class="col-md-6" style="width:650px;margin-right:40px;"--> 
+                <td style="width:650px;margin-right:40px; padding-right: 15px; padding-left: 15px; vertical-align:top;"> 
+                <!--div class="col-other" style="width:600px;position:fixed"-->
+            <!--td id="networkViewerTd" style="vertical-align:top; display:none;"-->
+                <fieldset id="networkViewer" style="visibility:hidden;padding-bottom:0px;">
+                <legend>Network viewer</legend>
+                <!--table id="modelVisualizer">
+                <tr>
+                    <td id="graphViz" style="vertical-align:top;"-->
+                        <div id="mainChart" style="width: 600px; height: 600px; overflow-x: hidden; overflow-y: hidden;">                    
+                        </div>
+                        <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <form class="form-horizontal" style="margin-top:10px;">
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-2 col-xs-10">
+                                            <div class="checkbox">
+                                                <label style="font-weight: 700;margin-left: -75px;">Show labels<input id="checkboxShowLabels" type="checkbox" style="margin-left: 25px;" checked></label>
+                                                <label style="font-weight: 700;margin-left:75px;" id="checkboxDiscoveryLabel">Discovery<input id="checkboxDiscovery" type="checkbox" style="margin-left:25px;"></label>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-2 col-xs-10">
+                                            <div class="checkbox">
+                                                <label style="font-weight: 700;margin-left: -75px;" id="checkboxPolarityLabel">Negatives<input id="checkboxPolarity" type="checkbox" style="margin-left: 39px;"></label>
+                                                <label style="font-weight: 700;margin-left:90px;" id="checkboxFusionLabel">Fusion<input id="checkboxFusion" type="checkbox" style="margin-left:46px;"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="confidenceFilteringGroup">
+                                        <label for="amount" class="control-label col-xs-4" style="margin-top: 10px;">Confidence:</label>
+                                        <div class="col-xs-8">
+                                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold; text-align: center;">
+                                            <div id="slider-range" style="margin-top:5px"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-xs-6">
+                                <form class="form-horizontal" style="margin-top:10px;">
+                                    <div class="form-group">
+                                        <label for="searchNode" class="control-label col-xs-4">Find in graph</label>
+                                        <div class="col-xs-8">
+                                            <input class="form-control" type="search" id="searchNode" placeholder = "Find">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="layoutSelect" class="control-label col-xs-4">Layout</label>
+                                        <div class="col-xs-8">
+                                            <select name="layoutSelect" id="layoutSelect" class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                    <!--/td>
+                </tr>                
+                </table-->
+                </fieldset>
+                <!--/div-->
+                </td>
+                <!--div class="col-md-6" style="height:780px; overflow-y: auto;overflow-x: auto; width:480px;"-->
+                <td style="height:780px; overflow-y: auto;overflow-x: auto; width:620px;padding-right: 15px; padding-left: 15px; vertical-align:top;">
+                
+                <!--div class="col-md-12" style="padding-left:655px;"-->
+                <!--td id="nodeInspectorTd" style="vertical-align:top;"-->
+                    <fieldset id="inspectorFieldset" style="visibility:hidden;padding-bottom:0px;">
+                    <legend>Inspector</legend>
+                        <div id="clickedNode">
+                        </div>
+                        <div id="neighborNodes">
+                        </div>
+                     </fieldset>
+                <!--/div-->
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <!--div class="col-md-3" style="width:1500px"-->
+                <td style="width:1500px; padding-right: 15px; padding-left: 15px; vertical-align:top;">
+                <!--td id="textAnalyzerTd" style="vertical-align:top;"-->
+                    <fieldset id="textAnalyzerFieldset" style="visibility:hidden;padding-bottom:0px;">
+                    <legend>Text Analyzer &nbsp; <a style="font-size: x-small; text-decoration: none; cursor: pointer;" onclick="scrollScreenVertically(0);">top</a></legend>
+                        <ul class="nav nav-pills">
+                            <li class="active"><a data-toggle="tab" href="#allPlainSentencesElements" id="plainSentencesNav">Sentences</a></li>                        
+                            <li><a data-toggle="tab" href="#allWordTreeElements" id="wordTreeNav">Word Tree</a></li>
+                            <li><a data-toggle="tab" href="#allSOVElements" id="SOVNav">Trigger visualization</a></li>
+                        </ul>
+                        <!--form class="form-inline"-->
+                        <div class="tab-content">
+                            <div id="allPlainSentencesElements" class="tab-pane fade in active">
+                            </div>
+                            <div id="allWordTreeElements" class="tab-pane fade">
+                                <input style="font-size:11pt;width:125px" type="search" id="searchWordTree" cols="40px" class="form-control" placeholder = "Enter term...">
+                                <input type="radio" name="wordTreeTypeRadios" value="suffix" checked> Starts
+                                <input type="radio" name="wordTreeTypeRadios" value="prefix"> Ends
+                            
+                            <!--/form-->
+                                <div id="wordTree" style="width: 1500px; height: 500px;">
+                                </div>
+                            </div>
+                            <div id="allSOVElements" class="tab-pane fade" style="margin-top:15px">
+                                <form class="form-inline">
+                                  <label for="selPart1">Participants:</label>
+                                  <select class="custom-select mb-2 mr-sm-2 mb-sm-0 form-control" id="selPart1" style="margin-right:100px">
+                                    <option selected>1</option>
+                                    <option>2</option>
+                                  </select>
+                                <!--label for="selPart2">Participant 2:</label>
+                                  <select class="custom-select mb-2 mr-sm-2 mb-sm-0 form-control" id="selPart2">
+                                    <option selected>1</option>
+                                    <option>2</option>
+                                  </select>
+                                  <label--><br>
+                                    <input type="checkbox" checked id="triggerVisCheckbox"> Lemmatized triggers
+                                  </label>
+                                </form>
+                                <div id="triggerVisualization">
+                                    <svg id="triggerVisualizationSVG" width="1000" height= "500"></svg>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                     </fieldset>
+                <!--/div--> <!--col-md -->
+                
+                </td>
+            </tr>
+        </table>
+            <!--/div--> <!--class="row" -->
+            <div id="changeConfidenceModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Change sentence confidence</h4>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="btnSaveConfidences" data-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!--class changeConfidenceModal-->
+            <div id="changeOverallEventConfidenceModal" class="modal fade" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Adjust event confidence</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inputRangeOverallEventConfidence" class="control-label col-xs-5">Overall confidence: 
+                                    <span id="spanAdjustOverallEventConfidence">1.00</span><br>
+                                    <span id="spanAdjustOverallEventPolarity" class="positiveSentenceClass">Positive event</span>
+                                    </label>
+                                    <div class="col-xs-7"><input list="ticks" type="range" class="form-control" min="-1" max="1" step="0.01" value="1" id="inputRangeOverallEventConfidence"></div>
+                                </div>
+                                <div class="form-group">
+                                        <div class="inputReason">
+                                            <label class="col-xs-5" style="font-weight: 700;text-align:right;">Reason for confidence override</label>
+                                            <textarea rows="5" cols="30" style="margin-left:30px" id="confidenceChangeReason" disabled></textarea>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                            <div class="undoConfidence">
+                                                <label class="col-xs-5" style="font-weight: 700;text-align:right;">Undo confidence override</label>
+                                                <button style="margin-left:30px" type="button" class="btn btn-warning" id="btnUndoConfidence" disabled>Undo</button>
+                                            </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" id="btnCloseOverallConfidences" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="btnSaveOverallConfidences" data-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!--id changeOverallEventConfidenceModal-->
+            <div id="confidenceComputationModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Additional settings</h4>
+                        </div>
+                        <div class="modal-body">
+                        <p><form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="exportGraphButton" class="control-label col-xs-4">Click to save graph</label>
+                                <div class="col-xs-8">
+                                    <button type="button" class="btn btn-default" id="exportGraphButton" >
+                                      Export <span class="glyphicon glyphicon-export" aria-hidden="true"></span>
+                                    </button>
+                                <a class="label label-success" id="graphExportedSpan" target="_blank"></a>
+                                </div>
+                                <!--label for="inputRangeRecency" class="control-label col-xs-4">Publication recency: <span id="spanAdjustRecency" class="spanSlider0">0.9</span></label>
+                                <div class="col-xs-8"><input type="range" class="form-control" min="0" max="1" step="0.1" value="0.9" id="inputRangeRecency"></div>
+                                
+                                <label for="inputRangeFreqSentence" class="control-label col-xs-4">Frequency of event in text: <span id="spanAdjustFreqSentence" class="spanSlider1">0.9</span></label>
+                                <div class="col-xs-8"><input type="range" class="form-control" min="0" max="1" step="0.1" value="0.9" id="inputRangeFreqSentence"></div-->
+                            </div>
+                            <div class="whiteBlackListDivs">
+                                <div class="col-xs-6">
+                                White list 
+                                <textarea class="form-control" id="whiteListTextArea"></textarea>
+                                </div>
+                                <div class="col-xs-6">
+                                Black list
+                                <textarea class="form-control" id="blackListTextArea"></textarea>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label style="font-weight: 700;">Show potential contradictory events<input id="checkboxContradictory" type="checkbox" style="margin-left: 10px;"></label>
+                                </div>
+                                <div>
+                                    <label style="font-weight: 700;">Use neural network-based event confidence<input id="checkboxNNmode" type="checkbox" style="margin-left: 10px;"></label>
+                                </div>
+                            </div>
+                        </form>
+                        </p>
+                        <p class="text-warning"><small>If you don't save, your changes will not be updated.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="btnSaveSettings" data-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!--class SettingsModal-->
+            <div id="drillInConfidenceModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Analize confidence value</h4>
+                        </div>
+                        <div class="modal-body">
+                        <p><svg width="600" height="400">
+                            <text x="5" y="15">Publication recency: </text>
+                            <rect x="160" y="5" width="300" height="15" style="fill:#3dde58;stroke-width:2px;stroke:black"></rect>
+                            <text x="455" y="17" text-anchor="end">70% </text>
+                            
+                            <text x="5" y="50">... </text>
+                            
+                            <text x="5" y="115">Final confidence: </text>
+                            <rect x="160" y="105" width="200" height="15" style="fill:#aaaade;stroke-width:2px;;stroke:black"></rect>
+                            <text x="355" y="117" text-anchor="end">65% </text>
+                            
+                            </svg>
+                            
+                            
+                        </p>
+                        <p class="text-warning"><small>You can adjust how confidence is computed from the tool settings.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                            
+                        </div>
+                    </div>
+                </div>
+            </div><!--class SettingsModal-->
+        <!--/div--> <!--class="container" -->        
+        <button type="button" class="btn btn-info btn-xs" id="btnSettings" data-dismiss="modal" style="position:fixed;top:2px;right:10px;"><span class="glyphicon glyphicon-cog"></span></button>
+        
+        <div id="tutorialModeDialog" class="modal fade" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="part1">
+                        </div><br>
+                        <div class="part2">
+                        </div>                            
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="btnNext" data-dismiss="modal">Next</button>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="WelcomeModeDialog" class="modal fade" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="part1">
+                        </div><br>
+                        <div class="part2">
+                        </div>                            
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="btnOkWelcome" data-dismiss="modal">OK</button>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    <!--/tr>
+    </table-->
+    <datalist id="ticks"><option>0</option></datalist>
+    <script type="text/javascript" src="./cookies.js"></script>
+    <script type="text/javascript" src="./tutorialMode.js"></script>
+    <script type="text/javascript" src="./aggregateEvidence.js"></script>
+	<script type="text/javascript" src="./networkVis.js"></script>
+	<script type="text/javascript" src="./networkData.js"></script>
+	<script type="text/javascript" src="./nodeInfoDisplay.js"></script>
+	<script type="text/javascript" src="./wordTreeSetting.js"></script>
+	<script type="text/javascript" src="./interfaceLitPath.js"></script>
+	<script src="./lemmatizer/lemmatizer.js"></script>
+	</body>
+</html>
+
+

@@ -1,0 +1,61 @@
+body {
+    margin-left:20px;
+    margin-top:10px;
+}
+
+.glyphicon-plus{
+    color:#8BC34A;
+    cursor: pointer;
+}
+.glyphicon-minus{
+    color:#FF5722;
+    cursor: pointer;
+}
+
+.form-control {
+    margin-bottom:5px;    
+}
+
+.neighborInfo{
+    display:block;
+}
+
+#neighborNodes{
+    margin-top:30px;
+}
+
+.neighborNodesTitle, .clickedNodeTitle{
+    font-weight:700;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+fieldset {
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+}
+
+#networkViewerTd, #nodeInspectorTd, #textAnalyzerTd{
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+    border-bottom: 2px solid gray;
+    padding:0 20px 0 20px;
+}
+
+#layoutSelect, #searchNode{
+    /*width: 40%;*/
+}
+
+#confidenceDrillIn{
+    color: #00bcd4;
+    cursor: pointer;
+}
+    
+

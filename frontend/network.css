@@ -1,0 +1,37 @@
+.nodePlain{
+  stroke: #fff;
+  stroke-width: 1.5px;
+  fill:#1f77b4;
+}
+
+.nodeSearched{
+  stroke: red;
+  fill:#1f77b4;
+}
+
+.nodeNeighbor{
+  stroke: black;
+  stroke-width: 4px;
+  fill:white;
+}
+
+.nodeHovered{
+    stroke: red;
+    stroke-width: 4px;
+    fill: white;
+}
+
+.directedLink{
+	fill:none;
+}
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+.node text{
+    fill: black;
+    //stroke: green;
+    font-size: 10pt;
+    font-family: monospace;
+}

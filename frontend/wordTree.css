@@ -1,0 +1,77 @@
+.confidencePaperSlidebar input, .confidenceSentenceSlidebar input{
+    padding: 0px;
+    margin-left:0px;
+    margin-right:0px;
+}
+
+.positiveSentenceClass, .positivePaperClass{
+    color: blue;
+}
+
+.negativeSentenceClass, .negativePaperClass{
+    color: red;
+}
+
+
+.paperMetaDataClass{
+    font-family:sans-serif;
+    font-size: 19px;
+}
+
+.confidenceSentenceClass{
+    width: 48.5%;
+}
+
+.expandableSentencesDiv{
+    border-right: 3px solid rgb(212, 210, 208);
+    border-bottom: 3px solid rgb(212, 210, 208);
+    border-left: 3px solid rgb(212, 210, 208);
+    width: 80%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
+
+.confidencePaperSlidebar{
+    width: 50%;
+}
+.highlightedWordEntity1, .highlightedWordEntity2{
+    font-weight:700;
+    //color: blue;
+}
+
+.highlightedWordTrigger{
+    text-decoration:underline;
+    //color: red; 
+}
+.nonHighlightedWord{
+    //fill:black;
+}
+
+.google-visualization-tooltip{
+    display:none;
+}
+
+.popover{
+    position:fixed;
+    max-width: 1000px;
+}
+
+.sentenceClass{
+    font-family:sans-serif;
+    font-size: 17px;
+}
+
+#allWordTreeElements, #allPlainSentencesElements{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+    background-color: darkorchid;
+}
+
+.leftSplineLines, .rightSplineLines{
+    fill: none;
+    
+}
