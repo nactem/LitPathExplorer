@@ -1,6 +1,6 @@
 # LitPathExplorer
 
-##Overview 
+## Overview 
 
 LitPathExplorer is a visual analytics tool for the joint exploration of pathway networks and
 biomolecular events extracted from scientific literature. It was designed based on goals which were
@@ -21,6 +21,6 @@ or she can explore, inspect and revise automatically extracted information, and 
 potentially facilitate the iterative retraining or recalibration of the system according to this
 feedback. 
 
-##How to cite
+## How to cite
 
-##Repository organization
+## Repository organization
