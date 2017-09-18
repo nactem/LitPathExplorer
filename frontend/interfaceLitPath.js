@@ -62,26 +62,26 @@ function interfaces(){
     //var randNumb = Math.floor(Math.random() * 1000);
 	
 	var modelFile = './data/outputFull.json';//12Kbreast cancer - Ras Big Mech
-	//var modelFile = './data/outputFullReactome.json';//12K breast cancer - reactome
+	//var modelFile = './data/outputFullReactome.json';//12Kbreast cancer - reactome
     
     
     var textualEvidenceFile = './data/out.full.cc.direct110417.json';//12Kbreast cancer - Ras Big Mech
     //var textualEvidenceFile = './data/out.full.cc.reactome28072017.json';//12Kbreast cancer - Ras Reactome
     //var textualEvidenceFile = './data/out.full.cc.directMelanoma220217.json';//Melanoma - Ras Big Mech
     //var textualEvidenceFile = './data/out.full.cc.directUnion080817.json';//Melanoma+BreastCancer - Ras Big Mech
-    //var textualEvidenceFile = './data/out.full.cc.directUnionNew080817.json';//Melanoma+BreastCancer - Ras Big Mech (New)
+    //var textualEvidenceFile = './data/out.full.cc.directUnionNew290817.json';//Melanoma+BreastCancer - Ras Big Mech (New)
     
     var PMCIDtoPMIDfile = './data/meta-data/pubmedCentralMapping110417.json';//12Kbreast cancer - Ras Big Mech
     //var PMCIDtoPMIDfile = './data/meta-data/pubmedCentralMappingReactome28072017.json';//12Kbreast cancer - Ras Reactome
     //var PMCIDtoPMIDfile = './data/meta-data/pubmedCentralMappingMelanoma220217.json';//Melanoma - Ras Big Mech
     //var PMCIDtoPMIDfile = './data/meta-data/pubmedCentralMappingUnion070817.json';//Melanoma+BreastCancer - Ras Big Mech
-    //var PMCIDtoPMIDfile = './data/meta-data/pubmedCentralMappingUnionNew070817.json';//Melanoma+BreastCancer - Ras Big Mech (New)
+    //var PMCIDtoPMIDfile = './data/meta-data/pubmedCentralMappingUnionNew290817.json';//Melanoma+BreastCancer - Ras Big Mech (New)
     
     var articleMetaDataFile = './data/meta-data/articleMetaData110417.json';//12Kbreast cancer - Ras Big Mech
     //var articleMetaDataFile = './data/meta-data/articleMetaDataReactome28072017.json';//12Kbreast cancer - Reactome
     //var articleMetaDataFile = './data/meta-data/articleMetaDataMelanoma220217.json';//Melanoma - Ras Big Mech
-    //var articleMetaDataFile = './data/meta-data/articleMetaDataUnion070817.json';//Melanoma + 12Kbreast cancer - Reactome
-    //var articleMetaDataFile = './data/meta-data/articleMetaDataUnionNew070817.json';//Melanoma + 12Kbreast cancer - Reactome (New)
+    //var articleMetaDataFile = './data/meta-data/articleMetaDataUnion070817.json';//Melanoma + 12Kbreast cancer - Ras Big Mech
+    //var articleMetaDataFile = './data/meta-data/articleMetaDataUnionNew290817.json';//Melanoma + 12Kbreast cancer - Ras Big Mech (New)
     
     var scriptReadEventOverriddenURL = GLOBALscriptReadEventOverriddenURL;
     

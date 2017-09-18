@@ -53,9 +53,12 @@ wordTree.prototype.addListenersForWordTree = function(){
         });
         
         //Update addWordTree, sentences and trigger viz
-        var focusedWord = dataFBL.evidence[nodeInfo.nodeClicked.modelElement].meta.enriched_evidence.evidence[0].evidence_text.slice(dataFBL.evidence[nodeInfo.nodeClicked.modelElement].meta.enriched_evidence.enriched_participant_a[0].begin,dataFBL.evidence[nodeInfo.nodeClicked.modelElement].meta.enriched_evidence.enriched_participant_a[0].end); //Get the word with the proper casing
+        var focusedWord = dataFBL.evidence[nodeInfo.nodeClicked.modelElement].meta.enriched_evidence.evidence[0].evidence_text.slice(dataFBL.evidence[nodeInfo.nodeClicked.modelElement].meta.enriched_evidence.enriched_participant_a[0].begin,dataFBL.evidence[nodeInfo.nodeClicked.modelElement].meta.enriched_evidence.enriched_participant_a[0].end);
         
-        thisObject.addWordTree(thisObject.currentWord==undefined?focusedWord:thisObject.currentWord,thisObject.typeTree, thisObject.currentEventModelElement);
+        //Check if wordTree tab is open (it may not be if this is called from the trigger viz)
+        if (d3.select(".nav-pills li.active a").attr("id")=="wordTreeNav"){
+            thisObject.addWordTree(thisObject.currentWord==undefined?focusedWord:thisObject.currentWord,thisObject.typeTree, thisObject.currentEventModelElement);
+        }
         thisObject.showTriggerVisualization(nodeInfo.nodeClicked.modelElement);
     });
     
@@ -321,7 +324,28 @@ if (preorderArray[index]==undefined){
     .attr("data-toggle", "popover")
     .attr("title",function(d,i){return d.word})
     .attr("data-content", function(d,i){
-        return (d.idsx.length==1?thisObject.listOfSentences[d.idsx[0]]+"<br />":"") + "<b>Average confidence:</b> " + d.priority+ "<br /><b>Appearing in sentence#: </b>"+ d.idsx.join([separator = ',']) + "<br /><br />Click to adjust event confidence <br/>Shift-click to go to publication";
+        /*return (d.idsx.length==1?thisObject.listOfSentences[d.idsx[0]]+"<br />":"") + "<b>Average confidence:</b> " + d.priority+ "<br /><b>Appearing in sentence#: </b>"+ d.idsx.join([separator = ',']) + "<br /><br />Click to adjust event confidence <br/>Shift-click to go to publication";*/
+        
+        var papersInvolved = [];
+        thisObject.arrayOfPaperObjects.forEach(function(elem,idx){
+            elem.forEach(function(elem2,idx2){
+                //Check if the paper has one of the sentences involved
+                if (d.idsx.indexOf(elem2.indexEvidence)>=0){
+                    //Check if the paper was found already so that it's not shown repeated
+                    if (papersInvolved.indexOf(idx + 1)==-1){
+                        papersInvolved.push(idx + 1);
+                    }
+                }
+            })
+        });
+        
+        var scoreDescription = d.idsx.length==1?"": d.idsx.length + " sentences using this textual structure<br>";
+        
+         var sentenceEnunciation = d.idsx.length==1?('"<i>' + thisObject.listOfSentences[d.idsx[0]]) +'</i>"' : '<i>Click to view sentences </i>';
+         
+          var triggerMetrics = "<b>Average confidence:</b> " + d.priority + "<br /><b>Appearing in paper(s) #: </b>"+ papersInvolved.join([separator = ', ']);
+        
+        return scoreDescription  + sentenceEnunciation + "<br>" + triggerMetrics + "<br /><br />Click to adjust event confidence <br/>Shift-click to go to publication";
       })
     .on("mousedown", function(d,i){
             thisObject.mouseDownWordTree(d,i,thisObject);
@@ -1082,7 +1106,7 @@ wordTree.prototype.arrangeTriggers = function(){
     var width = this.triggerVisualizationDims[0];
     var height = this.triggerVisualizationDims[1];
     
-    
+    thisObject.listOfTriggers.sort(sortTriggers);
     
     this.barWidth = d3.scale.linear().domain([0,thisObject.listOfSentences.length]).range([0,maxBarWidth]);
     this.verticalPositionTrigger = d3.scale.ordinal()
@@ -1143,7 +1167,8 @@ wordTree.prototype.arrangeTriggers = function(){
     .transition().duration(1000)
     .attr("width", function(d,i){
         return thisObject.barWidth(d.freq);
-    });
+    })
+    .style("opacity",opacityBasedOnConfidence);
     
     //Add groups
     triggerGroupsAdded = triggerGroups.enter().append("g")
@@ -1180,7 +1205,8 @@ wordTree.prototype.arrangeTriggers = function(){
     .attr("width", function(d,i){
         return thisObject.barWidth(d.freq);
     })
-    .style("fill","steelblue");
+    .style("fill","steelblue")
+    .style("opacity",opacityBasedOnConfidence);
     
     //Add reference rect
     triggerGroupsAdded.append("rect")
@@ -1251,6 +1277,18 @@ wordTree.prototype.arrangeTriggers = function(){
     //remove groups
     triggerGroups.exit().attr("class","triggerGroupToRemove").transition().delay(500).remove();
     
+    function opacityBasedOnConfidence(d,i){
+        //compute average confidence
+        var avgConfidence = 0;
+        thisObject.unique[d.text].forEach(function(elem,ii){
+            avgConfidence = avgConfidence + thisObject.arrayOfSentenceObjects[elem.idx].confidence;
+        })
+        avgConfidence = (1.0*avgConfidence / thisObject.unique[d.text].length).toFixed(2);
+        var opacityScale = d3.scale.linear().domain([0,1]).range([0.4,1]);
+        
+        return opacityScale(Math.abs(avgConfidence));
+    }
+    
     function popoverContent(d,i){
 
         //compute average confidence
@@ -1278,9 +1316,29 @@ wordTree.prototype.arrangeTriggers = function(){
         });
         var scoreDescription = sentencesInvolved.length + " out of " + thisObject.listOfSentences.length + " sentences use"+(sentencesInvolved.length==1?"s ":" ") + thisObject.participant1 + " &rarr; " + thisObject.listOfTriggers[i].text + " &rarr; " +thisObject.participant2;
         var sentenceEnunciation = sentencesInvolved.length==1?('"<i>' + thisObject.listOfSentences[sentencesInvolved[0]]) +'</i>"' : '<i>Click to view sentences </i>';
-        var triggerMetrics = "<b>Average confidence:</b> " + avgConfidence + "<br /><b>Appearing in paper #: </b>"+ papersInvolved.join([separator = ', ']);
+        var triggerMetrics = "<b>Average confidence:</b> " + avgConfidence + "<br /><b>Appearing in paper(s) #: </b>"+ papersInvolved.join([separator = ', ']);
         
         return scoreDescription + "<br>" + sentenceEnunciation + "<br>" + triggerMetrics + "<br /><br />Click to adjust event confidence <br/>Shift-click to go to publication";
+      }
+      
+      function sortTriggers(a,b){
+          var avgConfidence = 0;
+            thisObject.unique[a.text].forEach(function(elem,ii){
+                avgConfidence = avgConfidence + thisObject.arrayOfSentenceObjects[elem.idx].confidence;
+            })
+            avgConfidenceA = (1.0*avgConfidence / thisObject.unique[a.text].length).toFixed(2);
+            avgConfidence = 0;
+            thisObject.unique[b.text].forEach(function(elem,ii){
+                avgConfidence = avgConfidence + thisObject.arrayOfSentenceObjects[elem.idx].confidence;
+            })
+            avgConfidenceB = (1.0*avgConfidence / thisObject.unique[b.text].length).toFixed(2);
+          if (avgConfidenceA!=avgConfidenceB){
+              return avgConfidenceB-avgConfidenceA;
+          }
+          else{
+              return b.freq-a.freq;
+          }
+          
       }
 
 }
@@ -1428,6 +1486,18 @@ wordTree.prototype.showExpandablePapers = function(eventModelElement){
         
     //remove selected instances
     selectedSentences.exit().remove();
+    
+    //Show message if not textual evidence is found
+    var dataNoEvid = [];
+    if (thisObject.arrayOfPaperObjects.length==0){
+        dataNoEvid.push(1)
+    }
+    var noEvidenceDiv = d3.select("#allPlainSentencesElements").selectAll(".noEvidenceDiv").data(dataNoEvid);
+    
+    noEvidenceDiv.enter().append("div").attr("class","noEvidenceDiv").text("No evidence found in the literature about this reaction");
+    
+    noEvidenceDiv.exit().remove();
+    
     
     function paperProgressBar(d,i){
         //Adds  slider with value equal to the average of all sentences

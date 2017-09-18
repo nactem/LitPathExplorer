@@ -1594,7 +1594,7 @@ dataForForceBased.prototype.filterBasedOnFusion = function(fuseNodesOn, attribut
             var w = jQuery.extend({}, weigh);
             
 if (w.source.normalisedName=='Phosphorylation') {
-    console.log("1")
+    //console.log("1")
 }
             if (thisObject.attributeExistInGraph.hasOwnProperty(w.target[attributeFusion])){
                 //entity has a duplicate so this node should de dropped 
@@ -1607,7 +1607,7 @@ if (w.source.normalisedName=='Phosphorylation') {
                     if (indexxid>=0){                
                         w.target.reducedConnected.splice(indexxid,1);
                     }
-console.log('Whole attribute duplicated')
+//console.log('Whole attribute duplicated')
                     
                 }
                 else{
@@ -1642,7 +1642,7 @@ console.log('Whole attribute duplicated')
                         w.source.reducedConnected.push(w.target.id);
                     }
                     indexxid = w.source.reducedConnected.indexOf(oldTarget.id);
-                    if (indexxid>=0){                
+                    if ((indexxid>=0)&&(oldTarget.id!=w.target.id)){                
                         w.source.reducedConnected.splice(indexxid,1);
                     }
                     
