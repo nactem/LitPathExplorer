@@ -1,3 +1,9 @@
+LitPathExplorer is distributed under a dual license model designed to meet the development and distribution needs of both commercial distributors, such as ISVs (Independent Software Vendors) and VARs (Value Added Resellers), and open source projects.
+
+ISVs, VARs and other distributors that combine and distribute commercially licensed software with LitPathExplorer and do not wish to distribute the source code for the commercially licensed software under version 3 of the GNU Affero General Public License (the "AGPL") must enter into a commercial license agreement with The National Centre for Text Mining (NaCTeM). 
+
+The lemmatizer used for the Trigger visualization uses code from https://github.com/takafumir/javascript-lemmatizer, which is distributed under an MIT License.
+
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
