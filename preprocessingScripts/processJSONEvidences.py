@@ -10,6 +10,7 @@ import datetime
 import pandas as pd
 import locale 
 import math
+import sys
 
 locale.setlocale(locale.LC_NUMERIC, 'French_Canada.1252')
 
@@ -17,19 +18,19 @@ locale.setlocale(locale.LC_NUMERIC, 'French_Canada.1252')
 # In[113]:
 
 #load evidence data as dictionary
-with open('12K.ext.noC2.json') as data_file:  
+with open(sys.argv[1]) as data_file:  
     dataEvidence = json.load(data_file)
 
 #load mapping data as dictionary
-with open('pubmedCentralMapping110417.json') as data_file:  
+with open(sys.argv[2]) as data_file:  
     mappingData = json.load(data_file)
 
 #load article meta-data as dictionary
-with open('articleMetaData110417.json') as data_file:  
+with open(sys.argv[3]) as data_file:  
     publicationMetaData = json.load(data_file)
     
 #load journal IF as data frame
-journalStats = pd.read_csv('Indice de Impacto_2015.csv')
+journalStats = pd.read_csv(sys.argv[4])
 
 
 # In[5]:
@@ -124,8 +125,6 @@ def computeJournalIF(evidence,mappingData,pubMetaData, journalStats):
         if (pubmedId in pubMetaData) and (not(pubmedId in paperMentioned)): 
             if ("issn" in pubMetaData[pubmedId]) and (pubMetaData[pubmedId]["issn"] != ""):
                 if not journalStats['Impact Factor'][journalStats['ISSN']==pubMetaData[pubmedId]["issn"]].empty:
-                    #print(type(journalStats['Impact Factor'][journalStats['ISSN']==pubMetaData[pubmedId]["issn"]].iloc[0]))
-                    #print(journalStats['Impact Factor'][journalStats['ISSN']==pubMetaData[pubmedId]["issn"]].iloc[0])
                     if type(journalStats['Impact Factor'][journalStats['ISSN']==pubMetaData[pubmedId]["issn"]].iloc[0])==float:
                         value = 0
                     else:
@@ -188,6 +187,6 @@ for key, value in dataOutput.iteritems():
 # In[10]:
 
 #save data to disk
-with open('out.full.cc.direct1104217.json','w') as data_out:
+with open(sys.argv[5],'w') as data_out:
     json.dump(dataOutput,data_out)
 

@@ -1,4 +1,4 @@
-
+"""Extract publication meta-data. First argument is the textual evidence in JSON format (assuming that IDs are in pubmed central format), second argument is the output filename for the pubmedcentral mappings, and third argument is the output filename for the article meta-data. Optional arguments: the fourth arguments is a file with previously computed pubmedcentral mappings, and the fifth argument is a file with previously computed pubmed metadata."""
 # coding: utf-8
 
 # In[6]:
@@ -7,11 +7,15 @@ import json
 import urllib2
 import re
 import time
+import sys
 
 
+if len(sys.argv) < 2:
+    sys.exit("The JSON output with the textual evidence should be provided as a first parameter and the output filename as a second parameter")
+else:
+    JSONTextualEvidence = sys.argv[1]
 
-
-with open('12K.ext.noC2.json') as data_file:  
+with open(JSONTextualEvidence) as data_file:  
     data1 = json.load(data_file)
 
 
@@ -20,16 +24,14 @@ with open('12K.ext.noC2.json') as data_file:
 pubmedCentralMapping = {}
 articleMetaData = {}
 
-#read from previous run to avoid recrawling data (3 different APIs)
-if (True):    
-    with open('pubmedCentralMapping130217.json','r') as data_file:  
+#read from previous runs to avoid recrawling data (3 different APIs)
+if len(sys.argv) > 4:    
+    with open(sys.argv[4],'r') as data_file:  
         pubmedCentralMapping = json.load( data_file)    
-    with open('articleMetaData130217.json','r') as data_file:  
+    with open(sys.argv[5],'r') as data_file:  
         articleMetaData = json.load(data_file)
 
-        
-      
-        
+#for each evidence entry
 for confObject in data1:
     for textualEvidence in confObject['meta']['enriched_evidence']['evidence']:
         paperId = textualEvidence['paper_id']
@@ -82,15 +84,11 @@ for confObject in data1:
                     my_keys = ['score','context','details_url']                            
                     articleMetaData[pubmedId]['altmetric'] = { my_key: (metadata[my_key] if my_key in metadata else {}) for my_key in my_keys }
                     resultJson3.close()
-        else:
-            #print(str(pubmedId) + " already found!")
-            a=1
-            
 
             
-with open('pubmedCentralMapping110417.json','w') as data_file:  
+with open(sys.argv[2],'w') as data_file:  
     json.dump(pubmedCentralMapping, data_file)    
-with open('articleMetaData110417.json','w') as data_file:  
+with open(sys.argv[3],'w') as data_file:  
     json.dump(articleMetaData, data_file)    
 
 
