@@ -1,0 +1,23 @@
+Event normalised name,Event model element,Confidence value,Entity A normalised name,Entity A model element,Entity B normalised name,Entity B model element
+Binding,extension_event_11388,0.569175207482,HBx,extension_entity_2759,ERK,http://purl.org/pc2/7/Protein_3c188cd529ea7d261c898b5b46c35174
+Phosphorylation,extension_event_5587,0.551127847289,ciglitazone,extension_entity_1097
+Phosphorylation,extension_event_2250,0.486360319658,threonine,extension_entity_32
+Phosphorylation,extension_event_4977,0.536852067559,ΔNp63α,extension_entity_2069
+Phosphorylation,extension_event_3255,0.531223932868,PEITC,extension_entity_1712
+Phosphorylation,extension_event_5064,0.520864204505,tamoxifen,extension_entity_68
+Phosphorylation,extension_event_597,0.505577625018,SMAR1,extension_entity_367
+Phosphorylation,extension_event_5590,0.551127847289,Δ2-TGZ,extension_entity_2789
+Phosphorylation,extension_event_10224,0.556223966045,CXCL12,http://purl.org/pc2/7/Protein_e7c4d724896310715b87f5dd68872f84
+Phosphorylation,extension_event_1390,0.502031456669,RA,extension_entity_784
+Phosphorylation,extension_event_10223,0.556223966045,RGS1,extension_entity_4757
+Phosphorylation,extension_event_8210,0.531254481312,PIP,extension_entity_3865
+Positive_regulation,extension_event_5591,0.551127847289,MAPKK,extension_entity_1470
+Positive_regulation,extension_event_11387,0.569175207482
+Positive_regulation,extension_event_8214,0.531254481312,gene,extension_entity_321
+Regulation,extension_event_2572,0.520014039953,GAB2,http://purl.org/pc2/7/Protein_8aa37d8665f4bbb66672eb2ea8c9fbf6
+Regulation,extension_event_9274,0.557156625806,Mag,extension_entity_4356
+Negative_regulation,extension_event_3521,0.439822010265,PD98059,extension_entity_1744
+Negative_regulation,extension_event_13760,0.573124600484,luteolin,extension_entity_2293
+Negative_regulation,extension_event_13758,0.573124600484,chrysin,extension_entity_1297
+Negative_regulation,extension_event_13759,0.573124600484,apigenin,extension_entity_3998
+Negative_regulation,extension_event_13757,0.573124600484,kaempferol,extension_entity_2282

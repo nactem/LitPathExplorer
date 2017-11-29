@@ -1,0 +1,15 @@
+Event normalised name,Event model element,Confidence value,Entity A normalised name,Entity A model element,Entity B normalised name,Entity B model element
+Ubiquitination,extension_event_8384,0.363357461752,Skp2,extension_entity_1857,E-cadherin,http://purl.org/pc2/7/Protein_3433ef58d8f933502ee80d172e58d5a1
+Ubiquitination,extension_event_39,0.539956944603,ErbB,http://identifiers.org/reactome/REACT_116360.3,receptor,extension_entity_31
+Ubiquitination,extension_event_1877,0.444454358855,Cbl,http://purl.org/pc2/7/Protein_4da9acbe5425f1555611caa5d4df1992,AMAP1,extension_entity_907
+Ubiquitination,extension_event_11820,0.201801685648,Cisplatin,http://purl.org/pc2/7/SmallMolecule_491969408c44f4a4df93ba734e2b0135,FLIP,extension_entity_4075
+Ubiquitination,extension_event_11821,0.201801685648,AKT,http://purl.org/pc2/7/Protein_789b6eb4e8f7e86cd7981d448e4dc686,FLIP,extension_entity_4075
+Ubiquitination,extension_event_4667,0.52381742829,APS,http://identifiers.org/reactome/REACT_111708.3,IR,http://purl.org/pc2/7/Protein_dcfad195d014a50440a3f7d3a0467559
+Ubiquitination,extension_event_7480,0.227514667624,Estrogens,http://purl.org/pc2/7/SmallMolecule_43674b9d61cdea9cb1537836acf3cefd,Smad2,extension_entity_1975
+Ubiquitination,extension_event_10755,0.309962648459,SMAD4,http://purl.org/pc2/7/Rna_cdf84363ebdbb91b75af5c704b231fcc,Smad2,extension_entity_1975
+Ubiquitination,extension_event_6773,0.710356138458,KEAP1 protein,http://purl.org/pc2/7/Protein_5f5eefc48824f4038672b3a9e776036e,GFP-NRF2,extension_entity_2788
+Ubiquitination,extension_event_9725,0.388619770673,Kynurenine,extension_entity_3855,E-cadherin,http://purl.org/pc2/7/Protein_3433ef58d8f933502ee80d172e58d5a1
+Ubiquitination,extension_event_8748,0.359339787405,NDRG2,extension_entity_1894,Glut1,http://identifiers.org/reactome/REACT_4315.4
+Ubiquitination,extension_event_4677,0.52381742829,Cbl,http://purl.org/pc2/7/Protein_4da9acbe5425f1555611caa5d4df1992,IR,http://purl.org/pc2/7/Protein_dcfad195d014a50440a3f7d3a0467559
+Ubiquitination,extension_event_7768,0.224638486925,Cbl-c,extension_entity_2386,RET,http://purl.org/pc2/7/Protein_1d1168782bef644046ac19c96d7cb8dd
+Ubiquitination,extension_event_7193,0.363392392165,Src,http://purl.org/pc2/7/Protein_792efd518fff995b87f7cbefb5bffabd,E-cadherin,http://purl.org/pc2/7/Protein_3433ef58d8f933502ee80d172e58d5a1

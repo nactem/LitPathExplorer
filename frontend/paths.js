@@ -1,14 +1,14 @@
 var GLOBALscriptSuffixTreeURL, GLOBALscriptExportNetwork, pathSavedNetworks,GLOBALscriptLoggingURL;
 
 if (linux){
-    GLOBALscriptEventOverridenURL = 'http://nactem10.mib.man.ac.uk:5002/saveOverriddenEvents'; 
-    GLOBALscriptReadEventOverriddenURL = 'http://nactem10.mib.man.ac.uk:5002/readOverriddenEvents'; 
-    GLOBALscriptRetrainNN = 'http://nactem10.mib.man.ac.uk:5002/retrainNN'; 
-    GLOBALscriptRunNN = 'http://nactem10.mib.man.ac.uk:5002/runNN'; 
-    GLOBALscriptSuffixTreeURL = 'http://nactem10.mib.man.ac.uk:5002/suffixprefixtree'; 
-    GLOBALscriptLemmatizerURL = 'http://nactem10.mib.man.ac.uk:5002/lemmatizer'; 
-    GLOBALscriptExportNetwork = 'http://nactem10.mib.man.ac.uk:5002/saveNetwork'; 
-    GLOBALscriptLoggingURL = 'http://nactem10.mib.man.ac.uk:5002/log';     
+    GLOBALscriptEventOverridenURL = serverHostName + wsgiPrefix + '-saveOverriddenEvents'; 
+    GLOBALscriptReadEventOverriddenURL = serverHostName + wsgiPrefix + '-readOverriddenEvents'; 
+    GLOBALscriptRetrainNN = serverHostName + wsgiPrefix + '-retrainNN'; 
+    GLOBALscriptRunNN = serverHostName + wsgiPrefix + '-runNN'; 
+    GLOBALscriptSuffixTreeURL = serverHostName + wsgiPrefix + '-suffixprefixtree'; 
+    GLOBALscriptLemmatizerURL = serverHostName + wsgiPrefix + '-lemmatizer'; 
+    GLOBALscriptExportNetwork = serverHostName + wsgiPrefix + '-saveNetwork'; 
+    GLOBALscriptLoggingURL = serverHostName + wsgiPrefix + '-log';     
     pathSavedNetworks = 'http://nactem.ac.uk/LitPathExplorer_BI/savedNetworks/';     
 }
 else{

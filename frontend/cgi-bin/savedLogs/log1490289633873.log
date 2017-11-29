@@ -1,0 +1,3 @@
+Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_0e37a5668c22f62c53121a58fd9ac5ab, attributes:, Old value:0.68025219344, New value:0.06
+Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_843701c97effe4c62f8fb98058c1dad6, attributes:, Old value:0.580158505594, New value:0.26
+Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_17174f46f51be99738c7cc084b59fc09, attributes:, Old value:0.532043498731, New value:0.27

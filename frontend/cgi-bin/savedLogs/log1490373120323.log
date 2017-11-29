@@ -1,0 +1,9 @@
+Session:1490633228306, Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_23f29bf533487a1d704e13882703ba8c, attributes:, Old value:0, New value:0.12
+Session:1490633718393, Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_23f29bf533487a1d704e13882703ba8c, attributes:, Old value:0, New value:0.21
+Session:1490633718393, Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_23f29bf533487a1d704e13882703ba8c, attributes:, Old value:0.21, New value:0.16
+Session:1490634034675, Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_23f29bf533487a1d704e13882703ba8c, attributes:, Old value:0, New value:0.15
+Session:1490634104432, Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_bdd434fac3a10e561e9a75473f245e6c, attributes:, Old value:0, New value:-0.4
+Session:1492626951589, Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_7e11aacd34006d9594cfa4e2bb4b6e26, attributes:, Old value:0.699911043494, New value:1
+Session:1492683062667, Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_7e11aacd34006d9594cfa4e2bb4b6e26, attributes:, Old value:0.699911043494, New value:1
+Session:1492687538322, Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_59f8cb955ecd4e8975a9a27a97d79cd0, attributes:, Old value:0.806025124126, New value:1
+Session:1492692858628, Operation:overrideEventConfidence, node: http://purl.org/pc2/7/Catalysis_5568f22620c688c37617e82590570a57, attributes:, Old value:0.699911043494, New value:1

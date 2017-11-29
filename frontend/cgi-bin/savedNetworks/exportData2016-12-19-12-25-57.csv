@@ -1,0 +1,6 @@
+Protein_catabolism,Raf,MEK
+Protein_catabolism,ERK,MEK
+Binding,Complex (Ras/GTP/ Raf),MEK
+Phosphorylation,Raf,MEK
+Phosphorylation,RAF1,MEK
+Phosphorylation,MEK,ERK
