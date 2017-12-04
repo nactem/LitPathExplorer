@@ -1,15 +1,15 @@
 var GLOBALscriptSuffixTreeURL, GLOBALscriptExportNetwork, pathSavedNetworks,GLOBALscriptLoggingURL;
 
 if (linux){
-    GLOBALscriptEventOverridenURL = serverHostName + wsgiPrefix + '-saveOverriddenEvents'; 
-    GLOBALscriptReadEventOverriddenURL = serverHostName + wsgiPrefix + '-readOverriddenEvents'; 
-    GLOBALscriptRetrainNN = serverHostName + wsgiPrefix + '-retrainNN'; 
-    GLOBALscriptRunNN = serverHostName + wsgiPrefix + '-runNN'; 
-    GLOBALscriptSuffixTreeURL = serverHostName + wsgiPrefix + '-suffixprefixtree'; 
-    GLOBALscriptLemmatizerURL = serverHostName + wsgiPrefix + '-lemmatizer'; 
-    GLOBALscriptExportNetwork = serverHostName + wsgiPrefix + '-saveNetwork'; 
-    GLOBALscriptLoggingURL = serverHostName + wsgiPrefix + '-log';     
-    pathSavedNetworks = 'http://nactem.ac.uk/LitPathExplorer_BI/savedNetworks/';     
+    GLOBALscriptEventOverridenURL = serverHostName + wsgiPrefix + '/saveOverriddenEvents'; 
+    GLOBALscriptReadEventOverriddenURL = serverHostName + wsgiPrefix + '/readOverriddenEvents'; 
+    GLOBALscriptRetrainNN = serverHostName + wsgiPrefix + '/retrainNN'; 
+    GLOBALscriptRunNN = serverHostName + wsgiPrefix + '/runNN'; 
+    GLOBALscriptSuffixTreeURL = serverHostName + wsgiPrefix + '/suffixprefixtree'; 
+    GLOBALscriptLemmatizerURL = serverHostName + wsgiPrefix + '/lemmatizer'; 
+    GLOBALscriptExportNetwork = serverHostName + wsgiPrefix + '/saveNetwork'; 
+    GLOBALscriptLoggingURL = serverHostName + wsgiPrefix + '/log';     
+    pathSavedNetworks = serverHostName + location.pathname + '/cgi-bin/savedNetworks/';     
 }
 else{
     GLOBALscriptEventOverridenURL = './cgi-bin/saveOverriddenEvents.py'
@@ -20,5 +20,5 @@ else{
     GLOBALscriptSuffixTreeURL = './cgi-bin/suffixprefixtree.py'; 
     GLOBALscriptExportNetwork = './cgi-bin/saveNetwork.py'; 
     GLOBALscriptLoggingURL = './cgi-bin/log.py';     
-    pathSavedNetworks = './savedNetworks/';
+    pathSavedNetworks = './cgi-bin/savedNetworks/';
 }

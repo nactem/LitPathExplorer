@@ -1,3 +1,3 @@
 var linux = true;
-var serverHostName = 'http://nactem-copious.man.ac.uk/';
+var serverHostName = 'http://' + window.location.hostname + '/';
 var wsgiPrefix = 'LitPathExplorer-wsgi'
